@@ -275,6 +275,7 @@ span{
 .about-content p{
     font-size: 1.6rem;
     margin:2rem 0 3rem;
+    text-align: justify;
 }
 .btn{
     display: inline-block;
@@ -789,3 +790,232 @@ outline-color: var(--white-color);
     }
 }
 
+/* Expertise Section */
+.expertise-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap:wrap;
+    
+    padding-top:50px ;
+}
+
+.expertise-left,
+.expertise-right {
+    flex: 1;
+    padding: 2rem;
+    /* background-color: var(--white-color); */
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem var(--shadow-color);
+    text-align: left;
+    
+}
+
+.stack-list {
+    list-style: none;
+    font-size: 1.8rem; /* Increased font size */
+    line-height: 3.5rem; /* Better spacing between items */
+}
+
+.stack-list li {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* More space between icon and text */
+    margin-bottom: 2.5rem; /* Increased spacing between items */
+}
+
+.stack-list i {
+    font-size: 2.8rem; /* Larger icons */
+}
+
+.progress {
+    background-color: #e0e0e0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    height: 1.2rem;
+    flex: 1;
+    margin-left: 1rem;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--main-color);
+    text-align: right;
+    color: var(--white-color);
+    font-weight: 600;
+    font-size: 1.4rem; /* Larger progress text */
+    padding-right: 0.8rem; /* Increased padding */
+    line-height: 1.2rem;
+    border-radius: 0.5rem;
+    width: 0;
+    transition: width 3.5s ease-in-out;
+}
+
+/* Animation for Sliding In */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Hidden State */
+.expertise-left,
+.expertise-right {
+    opacity: 0;
+}
+
+/* Active State */
+.expertise-left.active {
+    animation: slideInLeft 1.5s ease-out forwards;
+}
+
+.expertise-right.active {
+    animation: slideInRight 1.5s ease-out forwards;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--bg-color);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem var(--shadow-color);
+    width: 70%;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content h3 {
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+}
+
+.modal-content img {
+    width: 100%;
+    height:auto;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem var(--shadow-color);
+}
+
+.modal-content p {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.modal-content ul {
+    list-style: none;
+    margin: 1rem 0;
+    padding: 0;
+}
+
+.modal-content ul li {
+    font-size: 1.4rem;
+    margin: 0.5rem 0;
+}
+
+.modal-content .btn {
+    margin-top: 1rem;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2rem;
+    color: var(--main-color);
+    cursor: pointer;
+}
+
+
+/* Modal Layout */
+.modal-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+}
+
+.modal-image {
+    flex: 1;
+    max-width: 55%;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem var(--shadow-color);
+}
+
+.modal-info {
+    flex: 1;
+    text-align: left;
+}
+
+.modal-info h3 {
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+    color: var(--main-color);
+}
+
+.modal-info p {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+}
+
+.modal-info h4 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.tech-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tech-icons i {
+    font-size: 4.4rem;
+    animation: bounce 2s infinite;
+}
+
+/* Bouncing Animation */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}

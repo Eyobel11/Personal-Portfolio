@@ -128,6 +128,24 @@ window.onscroll = () => {
         };
     });
 
+
+    // Select columns
+const expertiseLeft = document.querySelector('.expertise-left');
+const expertiseRight = document.querySelector('.expertise-right');
+
+// Trigger animation when section is in view
+window.addEventListener('scroll', () => {
+    const section = document.getElementById('expertise');
+    const sectionTop = section.getBoundingClientRect().top;
+    const triggerPoint = window.innerHeight - 100;
+
+    if (sectionTop < triggerPoint) {
+        expertiseLeft.classList.add('active');
+        expertiseRight.classList.add('active');
+    }
+});
+
+
 /* sticky  */
 
 
@@ -189,3 +207,121 @@ ScrollReveal({
  ScrollReveal().reveal('.home-content h3, .home-content p,.about-content', { origin: 'right' });
 
 
+// Animate Progress Bars on Scroll
+const progressBars = document.querySelectorAll('.progress-bar');
+
+function animateProgressBars() {
+    progressBars.forEach((bar) => {
+        const targetWidth = bar.getAttribute('data-progress');
+        bar.style.width = `${targetWidth}%`;
+    });
+}
+
+// Trigger animation when section is in view
+window.addEventListener('scroll', () => {
+  const section = document.getElementById('expertise');
+  const sectionTop = section.getBoundingClientRect().top;
+  const triggerPoint = window.innerHeight - 100;
+
+  if (sectionTop < triggerPoint) {
+      progressBars.forEach((bar) => {
+          const targetWidth = bar.getAttribute('data-progress');
+          bar.style.width = `${targetWidth}%`;
+      });
+  }
+});
+
+
+
+
+// Project data
+const projects = [
+  {
+    id: 1,
+    title: "Freelance Marketing App",
+    image: "fma.png",
+    description: "A dynamic platform built with MongoDB, Express, React, and Node.js, designed to connect freelancers with clients. It allows clients to post jobs, freelancers to place bids, and facilitates real-time messaging. Features include job management,  and user profiles, all aimed at streamlining freelance work and collaboration.",
+    tech: [
+      { name: "MongoDB", icon: "bx bxl-mongodb", color: "#47A248" },
+      { name: "Express.js", icon: "bx bxl-nodejs" , color: "#000000" },
+      { name: "React.js", icon: "bx bxl-react", color: "#61DBFB" },
+      { name: "Node.js", icon: "bx bxl-nodejs", color: "#8CC84B" }
+  ],  
+    link: "https://freelanceapp-frontend.onrender.com/"
+},
+{
+  id: 2,
+  title: "Inventory Managment System",
+  image: "ims.png",
+  description: "A robust inventory management system developed with Django and PostgreSQL to help businesses efficiently track and manage stock, material requests, and orders. It includes role-based access for admins, managers, and staff, allowing for actions such as approving material requests, issuing materials, and handling returns and transfers.",
+  tech: [
+    { name: "Django", icon: "bx bxl-django", color: "#092E20" },
+    { name: "PostgreSQL", icon: "bx bxl-postgresql", color: "#336791" },
+    { name: "Python", icon: "bx bxl-python", color: "#306998" },
+    { name: "Bootstrap", icon: "bx bxl-bootstrap", color: "#563D7C" }
+]
+,
+  link: "https://ims-orpin.vercel.app/"
+},
+
+  {
+      id: 3,
+      title: "Quiz App",
+      image: "quiz.png",
+      description: "A fun, interactive quiz application built with React, allowing users to take quizzes on various topics. The app includes a variety of questions, multiple-choice answers, and a score-tracking system that updates in real-time as the user progresses through the quiz, providing instant feedback and an engaging experience.",
+      tech: [
+          { name: "React.js", icon: "bx bxl-react", color: "#61DBFB" },
+          { name: "JavaScript", icon: "bx bxl-javascript", color: "#F7DF1E" },
+          { name: "CSS", icon: "bx bxl-css3", color: "#1572B6" }
+      ],
+      link: "https://eyobel11.github.io/Quiz-App/"
+  },
+  // Add more project objects as needed
+];
+
+// Modal elements
+const modal = document.getElementById('project-modal');
+const modalTitle = document.getElementById('project-title');
+const modalImage = document.getElementById('project-image');
+const modalDescription = document.getElementById('project-description');
+const modalTech = document.getElementById('project-tech');
+const modalLink = document.getElementById('project-link');
+const closeModal = document.querySelector('.close');
+
+// Open modal function
+function openModal(projectId) {
+  const project = projects.find((p) => p.id === projectId);
+  if (project) {
+      modalTitle.textContent = project.title;
+      modalImage.src = project.image;
+      modalDescription.textContent = project.description;
+      modalTech.innerHTML = project.tech
+          .map(
+              (t) =>
+                  `<i class="${t.icon}" style="color: ${t.color};" title="${t.name}"></i>`
+          )
+          .join('');
+      modalLink.href = project.link;
+      modal.style.display = 'flex';
+  }
+}
+
+// Close modal function
+closeModal.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+// Close modal on outside click
+window.addEventListener('click', (event) => {
+  if (event.target === modal) {
+      modal.style.display = 'none';
+  }
+});
+
+// Add click event listeners to projects
+document.querySelectorAll('.portfolio-box').forEach((box) => {
+  box.addEventListener('click', () => {
+      const projectId = parseInt(box.dataset.project, 10);
+      openModal(projectId);
+  });
+});
